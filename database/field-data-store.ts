@@ -4,7 +4,6 @@ import Field from "../model/Field";
 const prisma = new PrismaClient();
 
 export async function addFields(fields: Field) {
-
     try {
         const field = await prisma.field.create({
             data: {
