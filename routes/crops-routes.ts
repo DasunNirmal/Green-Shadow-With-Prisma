@@ -1,14 +1,14 @@
 import express from "express";
 import multer from "multer";
 import Crops from "../model/Crops";
-import {addCrops} from "../database/crops-data-store";
+import {addCrops, deleteCrops} from "../database/crops-data-store";
 
 const router = express.Router();
 
 const upload = multer({
-    storage: multer.memoryStorage(), // Store files in memory as Buffer
+    storage: multer.memoryStorage(),
     limits: {
-        fileSize: 10 * 1024 * 1024, // Limit file size to 10MB
+        fileSize: 10 * 1024 * 1024,
     },
 });
 
@@ -16,7 +16,7 @@ router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },]), async (req, 
     const crops: Crops = req.body;
 
     const files = req.files as { [fieldName: string]: Express.Multer.File[] };
-    const img = files['img']?.[0]?.buffer.toString('base64'); // Convert to base64
+    const img = files['img']?.[0]?.buffer.toString('base64');
 
     crops.img = img || '';
 
@@ -26,6 +26,17 @@ router.post('/add', upload.fields([{ name: 'img', maxCount: 1 },]), async (req, 
     } catch (error) {
         console.error(error);
         res.status(500).send('Error adding crops');
+    }
+});
+
+router.delete('/delete/:crop_code', async (req, res) => {
+    const crop_code = req.params.crop_code;
+    try {
+        await deleteCrops(crop_code);
+        res.send('Crops deleted successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting crops');
     }
 });
 
