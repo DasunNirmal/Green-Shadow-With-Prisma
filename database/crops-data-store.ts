@@ -31,3 +31,11 @@ export async function deleteCrops(crop_code: string) {
         console.log('Error Deleting Crops',e);
     }
 }
+
+export async function getAllCrops() {
+    try {
+        return await prisma.crops.findMany();
+    } catch (e) {
+        console.log('Error Getting Crops',e);
+    }
+}
