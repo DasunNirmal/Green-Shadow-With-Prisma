@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import Crops from "../model/Crops";
-import {addCrops, deleteCrops} from "../database/crops-data-store";
+import {addCrops, deleteCrops, getAllCrops} from "../database/crops-data-store";
 
 const router = express.Router();
 
@@ -37,6 +37,16 @@ router.delete('/delete/:crop_code', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error deleting crops');
+    }
+});
+
+router.get('/get', async (req, res) => {
+    try {
+        const crops = await getAllCrops();
+        res.json(crops);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching crops');
     }
 });
 
