@@ -39,3 +39,22 @@ export async function getAllCrops() {
         console.log('Error Getting Crops',e);
     }
 }
+
+export async function updateCrops(crop_code: string, crops: Crops) {
+    try {
+        await prisma.crops.update({
+            where: {crop_code: crop_code},
+            data: {
+                crop_code: crops.crop_code,
+                category: crops.category,
+                common_name: crops.common_name,
+                img: crops.img,
+                scientific_name: crops.scientific_name,
+                season: crops.season,
+                field_code: crops.field_code
+            }
+        });
+    } catch (e) {
+        console.log('Error Updating Crops',e);
+    }
+}
