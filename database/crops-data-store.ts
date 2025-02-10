@@ -21,3 +21,13 @@ export async function addCrops(crops: Crops) {
         console.log('Error Adding Crops',e);
     }
 }
+
+export async function deleteCrops(crop_code: string) {
+    try {
+        await prisma.crops.delete({
+            where: {crop_code: crop_code}
+        });
+    } catch (e) {
+        console.log('Error Deleting Crops',e);
+    }
+}
