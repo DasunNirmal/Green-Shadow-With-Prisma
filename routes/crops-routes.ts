@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import Crops from "../model/Crops";
-import {addCrops, deleteCrops, getAllCrops} from "../database/crops-data-store";
+import {addCrops, deleteCrops, getAllCrops, updateCrops} from "../database/crops-data-store";
 
 const router = express.Router();
 
@@ -47,6 +47,24 @@ router.get('/get', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching crops');
+    }
+});
+
+router.put('/update/:crop_code', upload.fields([{ name: 'img', maxCount: 1 },]), async (req, res) => {
+    const crop_code = req.params.crop_code;
+    const crops: Crops = req.body;
+
+    const files = req.files as { [fieldName: string]: Express.Multer.File[] };
+    const img = files['img']?.[0]?.buffer.toString('base64');
+
+    crops.img = img || '';
+
+    try {
+        await updateCrops(crop_code, crops);
+        res.send('Crops updated successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating crops');
     }
 });
 
