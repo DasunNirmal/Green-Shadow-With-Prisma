@@ -1,6 +1,6 @@
 import express from "express";
 import Field from "../model/Field";
-import {addFields, deleteFields, getAllFields, updateFields} from "../database/field-data-store";
+import {addFields, deleteFields, getAllFields, searchFields, updateFields} from "../database/field-data-store";
 import multer from "multer";
 
 const router = express.Router();
@@ -73,6 +73,17 @@ router.put('/update/:field_code', upload.fields([{ name: 'img_01', maxCount: 1 }
     } catch (error) {
         console.error(error);
         res.status(500).send('Error updating fields');
+    }
+});
+
+router.get('/search/:field_code', async (req, res) => {
+    const field_code = req.params.field_code;
+    try {
+        const fields = await searchFields(field_code);
+        res.json(fields);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error searching fields');
     }
 });
 
