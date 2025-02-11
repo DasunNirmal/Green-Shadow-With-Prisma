@@ -39,3 +39,11 @@ export async function deleteStaff(staff_id: string) {
         console.log('Error Deleting Staff',e);
     }
 }
+
+export async function getAllStaff() {
+    try {
+        return await prisma.staff.findMany();
+    } catch (e) {
+        console.log('Error Getting Staff',e);
+    }
+}
