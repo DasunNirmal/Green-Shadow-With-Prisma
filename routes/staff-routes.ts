@@ -1,5 +1,5 @@
 import express from "express";
-import {addStaff, deleteStaff, getAllStaff} from "../database/staff-data-store";
+import {addStaff, deleteStaff, getAllStaff, updateStaff} from "../database/staff-data-store";
 
 const router = express.Router();
 
@@ -32,6 +32,18 @@ router.get('/get', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error fetching staff');
+    }
+});
+
+router.put('/update/:staff_id', async (req, res) => {
+    const staff_id = req.params.staff_id;
+    const staff = req.body;
+    try {
+        await updateStaff(staff_id, staff);
+        res.send('Staff updated successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error updating staff');
     }
 });
 
