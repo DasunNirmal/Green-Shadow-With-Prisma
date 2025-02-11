@@ -1,5 +1,5 @@
 import express from "express";
-import {addStaff} from "../database/staff-data-store";
+import {addStaff, deleteStaff} from "../database/staff-data-store";
 
 const router = express.Router();
 
@@ -11,6 +11,17 @@ router.post('/add', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error adding staff');
+    }
+});
+
+router.delete('/delete/:staff_id', async (req, res) => {
+    const staff_id = req.params.staff_id;
+    try {
+        await deleteStaff(staff_id);
+        res.send('Staff deleted successfully');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting staff');
     }
 });
 
