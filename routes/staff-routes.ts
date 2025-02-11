@@ -1,5 +1,5 @@
 import express from "express";
-import {addStaff, deleteStaff} from "../database/staff-data-store";
+import {addStaff, deleteStaff, getAllStaff} from "../database/staff-data-store";
 
 const router = express.Router();
 
@@ -22,6 +22,16 @@ router.delete('/delete/:staff_id', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('Error deleting staff');
+    }
+});
+
+router.get('/get', async (req, res) => {
+    try {
+        const staff = await getAllStaff();
+        res.json(staff);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error fetching staff');
     }
 });
 
