@@ -74,3 +74,30 @@ export async function updateStaff(staff_id: string, staff: Staff) {
         console.log('Error Updating Staff',e);
     }
 }
+
+export async function searchStaff(staff_id: string,) {
+    try {
+        return await prisma.staff.findUnique({
+            where: {staff_id: staff_id},
+            select: {
+                staff_id: true,
+                address_01: true,
+                address_02: true,
+                address_03: true,
+                address_04: true,
+                address_05: true,
+                designation: true,
+                dob: true,
+                email: true,
+                first_name: true,
+                gender: true,
+                joined_date: true,
+                last_name: true,
+                phone_no: true,
+                role: true
+            }
+        });
+    } catch (e) {
+        console.log('Error Searching Staff',e);
+    }
+}
