@@ -47,3 +47,30 @@ export async function getAllStaff() {
         console.log('Error Getting Staff',e);
     }
 }
+
+export async function updateStaff(staff_id: string, staff: Staff) {
+    try {
+        await prisma.staff.update({
+            where: {staff_id: staff_id},
+            data: {
+                staff_id: staff.staff_id,
+                address_01: staff.address_01,
+                address_02: staff.address_02,
+                address_03: staff.address_03,
+                address_04: staff.address_04,
+                address_05: staff.address_05,
+                designation: staff.designation,
+                dob: staff.dob,
+                email: staff.email,
+                first_name: staff.first_name,
+                gender: staff.gender,
+                joined_date: staff.joined_date,
+                last_name: staff.last_name,
+                phone_no: staff.phone_no,
+                role: staff.role
+            }
+        });
+    } catch (e) {
+        console.log('Error Updating Staff',e);
+    }
+}
