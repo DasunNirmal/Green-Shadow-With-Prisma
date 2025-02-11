@@ -56,3 +56,21 @@ export async function updateFields(field_code: string, fields: Field) {
         console.log('Error Updating Fields',e);
     }
 }
+
+export async function searchFields(field_code: string,) {
+    try {
+        return await prisma.field.findUnique({
+            where: {field_code: field_code},
+            select: {
+                field_code: true,
+                extent_size: true,
+                field_location: true,
+                field_name: true,
+                img_01: true,
+                img_02: true
+            }
+        });
+    } catch (e) {
+        console.log('Error Searching Fields',e);
+    }
+}
