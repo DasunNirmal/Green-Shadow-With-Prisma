@@ -29,3 +29,13 @@ export async function addStaff(staff: Staff) {
         console.log('Error Adding Staff',e);
     }
 }
+
+export async function deleteStaff(staff_id: string) {
+    try {
+        await prisma.staff.delete({
+            where: {staff_id: staff_id}
+        });
+    } catch (e) {
+        console.log('Error Deleting Staff',e);
+    }
+}
