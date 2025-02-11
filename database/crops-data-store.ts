@@ -58,3 +58,22 @@ export async function updateCrops(crop_code: string, crops: Crops) {
         console.log('Error Updating Crops',e);
     }
 }
+
+export async function searchCrops(crop_code: string,) {
+    try {
+        return await prisma.crops.findUnique({
+            where: {crop_code: crop_code},
+            select: {
+                crop_code: true,
+                category: true,
+                common_name: true,
+                img: true,
+                scientific_name: true,
+                season: true,
+                field_code: true
+            }
+        });
+    } catch (e) {
+        console.log('Error Searching Crops',e);
+    }
+}
