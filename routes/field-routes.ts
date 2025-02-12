@@ -6,9 +6,9 @@ import multer from "multer";
 const router = express.Router();
 
 const upload = multer({
-    storage: multer.memoryStorage(), // Store files in memory as Buffer
+    storage: multer.memoryStorage(),
     limits: {
-        fileSize: 10 * 1024 * 1024, // Limit file size to 10MB
+        fileSize: 10 * 1024 * 1024,
     },
 });
 
