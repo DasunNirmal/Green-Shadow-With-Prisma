@@ -77,3 +77,32 @@ model Equipment {
   field_code     String
   staff_id       String
 }
+
+model Field_Logs {
+  log_code       String @id
+  details        String
+  img            String @db.LongText
+  log_date       String
+  field_location String
+  field_name     String
+  field_code     String
+}
+
+model Crop_Logs {
+  log_code  String @id
+  details   String
+  img       String @db.LongText
+  log_date  String
+  crop_name String
+  crop_code String
+}
+
+model Staff_Logs {
+  log_code   String @id
+  details    String
+  img        String @db.LongText
+  log_date   String
+  first_name String
+  phone_no   String
+  staff_id   String
+}
