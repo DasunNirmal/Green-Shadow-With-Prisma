@@ -57,7 +57,7 @@ export async function updateFields(field_code: string, fields: Field) {
     }
 }
 
-export async function searchFields(field_code: string,) {
+export async function searchFields(field_code: string) {
     try {
         return await prisma.field.findUnique({
             where: {field_code: field_code},
