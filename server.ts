@@ -7,6 +7,7 @@ import vehicleRoutes from "./routes/vehicle-routes";
 import equipmentRoutes from "./routes/equipment-routes";
 import fieldLogsRoutes from "./routes/field-logs-routes";
 import cropLogsRoutes from "./routes/crop-logs-routes";
+import staffLogsRoutes from "./routes/staff-logs-routes";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/vehicle', vehicleRoutes);
 app.use('/equipment', equipmentRoutes);
 app.use('/field-logs', fieldLogsRoutes);
 app.use('/crop-logs', cropLogsRoutes);
+app.use('/staff-logs', staffLogsRoutes);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
