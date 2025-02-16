@@ -21,7 +21,8 @@ export async function addStaff(staff: Staff) {
                 joined_date: staff.joined_date,
                 last_name: staff.last_name,
                 phone_no: staff.phone_no,
-                role: staff.role
+                role: staff.role,
+                field_code: staff.field_code
             }
         });
         console.log('Staff Added', staffs);
@@ -67,7 +68,8 @@ export async function updateStaff(staff_id: string, staff: Staff) {
                 joined_date: staff.joined_date,
                 last_name: staff.last_name,
                 phone_no: staff.phone_no,
-                role: staff.role
+                role: staff.role,
+                field_code: staff.field_code
             }
         });
     } catch (e) {
@@ -94,7 +96,8 @@ export async function searchStaff(staff_id: string,) {
                 joined_date: true,
                 last_name: true,
                 phone_no: true,
-                role: true
+                role: true,
+                field_code: true
             }
         });
     } catch (e) {
