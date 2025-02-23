@@ -8,6 +8,7 @@ import equipmentRoutes from "./routes/equipment-routes";
 import fieldLogsRoutes from "./routes/field-logs-routes";
 import cropLogsRoutes from "./routes/crop-logs-routes";
 import staffLogsRoutes from "./routes/staff-logs-routes";
+import userAuthenticationRoutes, {authenticateToken} from "./routes/user-authentication-routes";
 
 const app = express();
 
@@ -16,8 +17,15 @@ app.use(express.json());
 app.use(cors({
     origin: "http://localhost:5173",  // Allow frontend requests
     methods: "GET, POST, PUT, PATCH, DELETE, OPTIONS",
-    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept"
+    allowedHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+    credentials: true
 }));
+
+console.log("SECRET_KEY", process.env.SECRET_KEY);
+
+app.use('/auth', userAuthenticationRoutes);
+
+app.use(authenticateToken);
 
 app.use('/field', fieldRoutes);
 app.use('/crops', cropsRoutes);
