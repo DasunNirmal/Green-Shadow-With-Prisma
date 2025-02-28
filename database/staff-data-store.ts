@@ -22,7 +22,8 @@ export async function addStaff(staff: Staff) {
                 last_name: staff.last_name,
                 phone_no: staff.phone_no,
                 role: staff.role,
-                field_code: staff.field_code
+                field_code: staff.field_code,
+                date_added: staff.date_added
             }
         });
         console.log('Staff Added', staffs);
@@ -69,7 +70,8 @@ export async function updateStaff(staff_id: string, staff: Staff) {
                 last_name: staff.last_name,
                 phone_no: staff.phone_no,
                 role: staff.role,
-                field_code: staff.field_code
+                field_code: staff.field_code,
+                date_added: staff.date_added
             }
         });
     } catch (e) {
