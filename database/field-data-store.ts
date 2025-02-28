@@ -12,7 +12,8 @@ export async function addFields(fields: Field) {
                 field_location: fields.field_location,
                 field_name: fields.field_name,
                 img_01: fields.img_01,
-                img_02: fields.img_02
+                img_02: fields.img_02,
+                date_added: fields.date_added
             }
         });
         console.log('Field Added', field);
@@ -49,7 +50,8 @@ export async function updateFields(field_code: string, fields: Field) {
                 field_location: fields.field_location,
                 field_name: fields.field_name,
                 img_01: fields.img_01,
-                img_02: fields.img_02
+                img_02: fields.img_02,
+                date_added: fields.date_added
             }
         });
     } catch (e) {
