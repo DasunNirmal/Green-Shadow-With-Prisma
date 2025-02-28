@@ -13,7 +13,8 @@ export async function addCrops(crops: Crops) {
                 img: crops.img,
                 scientific_name: crops.scientific_name,
                 season: crops.season,
-                field_code: crops.field_code
+                field_code: crops.field_code,
+                date_added: crops.date_added
             }
         });
         console.log('Crop Added', crop);
@@ -51,7 +52,8 @@ export async function updateCrops(crop_code: string, crops: Crops) {
                 img: crops.img,
                 scientific_name: crops.scientific_name,
                 season: crops.season,
-                field_code: crops.field_code
+                field_code: crops.field_code,
+                date_added: crops.date_added
             }
         });
     } catch (e) {
