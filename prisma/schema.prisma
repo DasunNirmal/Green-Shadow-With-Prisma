@@ -26,6 +26,7 @@ model Field {
   field_name     String
   img_01         String @db.LongText
   img_02         String @db.LongText
+  date_added     String
 }
 
 model Staff {
@@ -45,6 +46,7 @@ model Staff {
   phone_no    String
   role        String
   field_code  String
+  date_added  String
 }
 
 model Crops {
@@ -55,6 +57,7 @@ model Crops {
   scientific_name String
   season          String
   field_code      String
+  date_added      String
 }
 
 model Vehicle {
